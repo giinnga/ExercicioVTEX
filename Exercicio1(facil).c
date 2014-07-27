@@ -8,7 +8,7 @@ int arredonda (float x) {
 	if (i >= 0.5)
 		return ceil(x);
 	else
-		return floor(x); // Arredondamento 
+		return floor(x);
 }
 
 int calculoDistancia (int comprado, int maximo) { // Fórmula adquirida após o modelar matematicamente a questão
