@@ -1,0 +1,2 @@
+ExercicioVTEX
+=============
