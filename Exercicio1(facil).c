@@ -8,10 +8,10 @@ int arredonda (float x) {
 	if (i >= 0.5)
 		return ceil(x);
 	else
-		return floor(x);
+		return floor(x); // Arredondamento 
 }
 
-int calculoDistancia (int comprado, int maximo) {
+int calculoDistancia (int comprado, int maximo) { // Fórmula adquirida após o modelar matematicamente a questão
 
 	return arrendoda((float)(comprado / maximo) * 2 ) + 1;
 }
@@ -31,7 +31,8 @@ int calculoDeposito (int distancia,int maximo, int total) {
 	}
 }
 
-int teste (int total, int distancia, int hectometro, int maximo, int deposito) { // Função recursiva caso seja feito mais de um depósito
+int teste (int total, int distancia, int hectometro, int maximo, int deposito) { /* Função recursiva caso seja necessário calcular mais
+																					de uma vez a distância */
 
 	if (hectometro >= total)
 		return 0;
