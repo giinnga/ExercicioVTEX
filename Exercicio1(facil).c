@@ -11,9 +11,9 @@ int arredonda (float x) {
 		return floor(x);
 }
 
-int calculoDistancia (int comprado, int maximo) { // Fórmula adquirida após o modelar matematicamente a questão
+int calculoDistancia (float comprado, float maximo) { // Fórmula adquirida após o modelar matematicamente a questão
 
-	return arrendoda((float)(comprado / maximo) * 2 ) + 1;
+	return arredonda((float)(comprado / maximo) * 2 ) + 1;
 }
 
 int entrega (int quantidade, int distancia) {
@@ -38,20 +38,16 @@ int teste (int total, int distancia, int hectometro, int maximo, int deposito) {
 		return 0;
 
 	distancia = calculoDistancia(total,maximo);
-	printf("Distancia: %d\n",distancia );
-	
+		
 	while (total > 0) {
 		deposito = deposito + calculoDeposito(distancia,maximo,total);
-		printf("Deposito: %d\n",deposito);
 		if (total > maximo)
 			total = total - maximo;
 		else
 			total = 0;
-		printf("Total: %d\n",total);
-	}
-	
+	}	
 	if (deposito <= maximo && hectometro - distancia < deposito)
-		return entrega (deposito,hectometro - distancia);
+		return entrega(deposito,hectometro - distancia);
 	
 	else
 		return teste(deposito,distancia,hectometro,maximo,0);
