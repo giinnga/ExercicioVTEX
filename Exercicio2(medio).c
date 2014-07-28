@@ -36,7 +36,7 @@ int equacao (int xv, int yv, int x, int y) { // Encontrar o C da equacao a*x + b
 	xb = x + xv;
 	yb = y + yv;
 
-	return x * yc - y * xc;
+	return x * y - y * x;
 }
 
 int testeQ (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int q, int cl) { // Verificar e se necessario trocar as coordenadas dos pontos
@@ -44,6 +44,7 @@ int testeQ (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int 
 	int aux, c1, c2;
 	if (q == 0){
 		printf("Erro, vetor direcao (0,0)!\n");
+		exit(1);
 	}
 	else {
 		if(q == 1) {
@@ -158,10 +159,14 @@ int main(void) {
 	char templos[10];
 	printf("Digite o número de templos existentes: ");
 	scanf("%d",&n);
-	printf("Digite as coordenadas do Link (x,y): ");
-	scanf("%d %d",&xl,&yl);
-	printf("Digite o vetor direcao da espada de Link (x,y): ");
-	scanf("%d %d",&xv,&yv);
+	printf("Digite a coordenada X do Link: ");
+	scanf("%d",&xl);
+	printf("Digite a coordenada Y do Link: ");
+	scanf("%d",&yl);
+	printf("Digite o vetor direcao da espada de Link: ");
+	scanf("%d",&xv);
+	printf("Agora o Y do vetor: ");
+	scanf("%d",%yv);
 	while(n>0) {
 		printf("Digite o nome do templo: ");
 		scanf("%s",&templos);
@@ -174,7 +179,6 @@ int main(void) {
 	i = testeQ(xl, yl, x1, x2, y1, y2, xv, yv, q, cl);
 	printf("%d",i);
 	return 0;
-
 }
 
 
