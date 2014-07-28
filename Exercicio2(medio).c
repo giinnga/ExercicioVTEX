@@ -44,6 +44,7 @@ int testeQ (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int 
 	int aux, c1, c2;
 	if (q == 0){
 		printf("Erro, vetor direcao (0,0)!\n");
+		return 0;
 	}
 	else {
 		if(q == 1) {
