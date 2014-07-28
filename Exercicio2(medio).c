@@ -39,7 +39,11 @@ int equacao (int xv, int yv, int x, int y) { // Encontrar o C da equacao a*x + b
 	return x * yb - y * xb;
 }
 
-int testeQ (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int q, int cl) { // Verificar e se necessario trocar as coordenadas dos pontos
+int determinaTemplo (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int q, int cl) { /* Verificar e se necessario trocar as coordenadas dos
+																								pontos. Verificar tambem se o templo se
+																								adequa ao quadrante e comparar o C da equacao
+																								da espada ao C da equacao dos pontos do templo,
+																								determinando se Link dever ir ou nao ao local*/
 
 	int aux, c1, c2;
 	if (q == 0){
@@ -183,7 +187,7 @@ int main(void) {
 		scanf("%d",&x2[i]);
 		printf("Digite a coordenada y do segundo ponto do templo: ");
 		scanf("%d",&y2[i]);
-		r = testeQ(xl, yl, x1[i], x2[i], y1[i], y2[i], xv, yv, q, cl);
+		r = determinaTemplo(xl, yl, x1[i], x2[i], y1[i], y2[i], xv, yv, q, cl);
 		if(r == 1) {
 			c[j] = i;
 			j++;
