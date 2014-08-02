@@ -50,7 +50,7 @@ int teste (int total, int distancia, int hectometro, int maximo, int deposito) {
 		return entrega(deposito,hectometro - distancia);
 	
 	else
-		return teste(deposito,distancia,hectometro,maximo,0);
+		return teste(deposito,distancia,hectometro-distancia,maximo,0);
 }
 
 int main (void) {
@@ -58,10 +58,12 @@ int main (void) {
 	int total, maximo, hectometro, final;
 	printf("Digite o total de produtos comprados, a distancia em hectometros e o maximo carregado pelo carrinho em ordem!\n");
 	scanf("%d %d %d",&total,&hectometro,&maximo);
+	if(total < 10 || maximo > 100000000)
+		return 0;
 	final = teste(total,0,hectometro,maximo,0);
 	if (final == 0)
-		printf("Impossivel\n");
+		printf("impossivel\n");
 	else
-		printf("Entrega: %d\n",final);
+		printf("%d",final);
 	return 0;
 }

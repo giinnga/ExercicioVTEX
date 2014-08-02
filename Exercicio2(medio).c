@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int quadrante (int xv, int yv) { // Descobrir para qual quadrante o vetor direcao aponta
 
@@ -32,11 +34,11 @@ int quadrante (int xv, int yv) { // Descobrir para qual quadrante o vetor direca
 
 int equacao (int xv, int yv, int x, int y) { // Encontrar o C da equacao a*x + b*y + c = 0
 
-	int xb, yb;
-	xb = x + xv;
-	yb = y + yv;
+	int xc, yc;
+	xc = x + xv;
+	yc = y + yv;
 
-	return x * yb - y * xb;
+	return x * yc - y * xc;
 }
 
 int determinaTemplo (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int yv, int q, int cl) { /* Verificar e se necessario trocar as coordenadas dos
@@ -157,51 +159,75 @@ int determinaTemplo (int xl, int yl, int x1, int x2, int y1, int y2, int xv, int
 		return 0;
 }
 
-int main(void) {
-
-	int n, xl, yl, cl, xv, yv, q, i=0, r, j=0;
-	int x1[100], x2[100], y1[100], y2[100], c[100];
-	char *templos[100];
-	printf("Digite o número de templos existentes: ");
-	scanf("%d",&n);
-	printf("Digite a coordenada X do Link: ");
-	scanf("%d",&xl);
-	printf("Digite a coordenada Y do Link: ");
-	scanf("%d",&yl);
-	printf("Digite o vetor direcao da espada de Link: ");
-	scanf("%d",&xv);
-	printf("Agora o Y do vetor: ");
-	scanf("%d",&yv);
-
-	cl = equacao(xv,yv,xl,yl);
-	q = quadrante(xv,yv);
-
-	while(n > 0) {
-		printf("Digite o nome do templo: ");
-		scanf("%s",templos[i]);
-		printf("Digite a coordenada x do primeiro ponto do templo: ");
-		scanf("%d",&x1[i]);
-		printf("Digite a coordenada y do primeiro ponto do templo: ");
-		scanf("%d",&y1[i]);
-		printf("Digite a coordenada x do segundo ponto do templo: ");
-		scanf("%d",&x2[i]);
-		printf("Digite a coordenada y do segundo ponto do templo: ");
-		scanf("%d",&y2[i]);
-		r = determinaTemplo(xl, yl, x1[i], x2[i], y1[i], y2[i], xv, yv, q, cl);
-		if(r == 1) {
-			c[j] = i;
+void imprime(char *templos[],int cada[],int todos){
+	int i=0,j=0;
+	while(todos>0){
+		printf("%s",templos[i]);
+		cada[j]--;
+		i++;
+		if(cada[j]==0){
+			printf("\n");
 			j++;
 		}
-		i++;
-		n--;
+		else
+			printf(" ");
+		todos--;
 	}
-
-	i=0;
-	while (j>0) {
-		printf("%s\n",templos[c[i]]);
-        j--;
-        i++;
-	}
-	return 0;
+	return;
 }
 
+void libera(char *templos[],int total){
+	while(total>=0){
+		free(templos[total]);
+		total--;
+	}
+	return;
+}
+
+int main (void) {
+	int n,xl,yl,xv,yv,x1,x2,y1,y2,q,cl,r,i=0,aux=0,total=0;
+	char templo[21], *templos[100];
+	int t[100];
+
+	printf("Digite o numero de templos existentes: ");
+	scanf(" %d",&n);
+	while(n!=0){
+		printf("Digite a coordenada X do Link: ");
+		scanf(" %d",&xl);
+		printf("Digite a coordenada Y do Link: ");
+		scanf(" %d",&yl);
+		printf("Digite o vetor direcao da espada de Link: ");
+		scanf(" %d",&xv);
+		printf("Agora o Y do vetor: ");
+		scanf(" %d",&yv);
+		cl = equacao(xv,yv,xl,yl);
+		q = quadrante(xv,yv);
+		while(n>0) {
+			printf("Digite o nome do templo: ");
+			scanf(" %s",templo);
+			printf("Digite a coordenada x do primeiro ponto do templo: ");
+			scanf(" %d",&x1);
+			printf("Digite a coordenada y do primeiro ponto do templo: ");
+			scanf(" %d",&y1);
+			printf("Digite a coordenada x do segundo ponto do templo: ");
+			scanf(" %d",&x2);
+			printf("Digite a coordenada y do segundo ponto do templo: ");
+			scanf(" %d",&y2);
+			r = determinaTemplo(xl, yl, x1, x2, y1, y2, xv, yv, q, cl);
+			if(r==1){
+				templos[i] = (char *)malloc(21*sizeof(char)+1);
+				strcpy(templos[i],templo);
+				i++;
+				total+=1;
+			}
+			n--;
+		}
+		t[aux] = i;
+		aux++;
+		printf("Digite o numero de templos existentes: ");
+		scanf(" %d",&n);
+	}
+	imprime(templos,t,&total);
+	libera(templos,&total);
+	return 0;
+}
